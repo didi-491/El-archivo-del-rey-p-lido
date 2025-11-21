@@ -1,0 +1,347 @@
+version: 2
+
+sources:
+  - name: hk_raw
+    description: "Fuentes RAW del reino de Hollownest."
+    database: hk_dev_bronze
+    tables:
+
+      - name: hk_areas
+        description: "Listado de áreas del mapa del juego con sus coordenadas."
+        columns:
+          - name: area_id
+            data_type: varchar
+            description: "Identificador único del área."
+            tests:
+              - not_null
+              - unique
+          - name: area_name
+            data_type: varchar
+            description: "Nombre del área."
+            tests:
+              - not_null
+          - name: x_start
+            data_type: varchar
+            description: "Coordenada X inicial del área en el mapa."
+            tests:
+              - not_null
+          - name: y_start
+            data_type: varchar
+            description: "Coordenada Y inicial del área en el mapa."
+            tests:
+              - not_null
+          - name: x_end
+            data_type: varchar
+            description: "Coordenada X final del área en el mapa."
+            tests:
+              - not_null
+          - name: y_end
+            data_type: varchar
+            description: "Coordenada Y final del área en el mapa."
+            tests:
+              - not_null
+          - name: subregions
+            data_type: varchar
+            description: "Subregiones que pertenecen a esta área."
+
+      - name: hk_bench
+        description: "Ubicaciones de bancos donde el jugador puede descansar."
+        columns:
+          - name: type
+            data_type: varchar
+            description: "Tipo de objeto que se analiza. Es todo el rato bench."
+          - name: x
+            data_type: number
+            description: "Coordenada X del banco."
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "Coordenada Y del banco."
+            tests:
+              - not_null
+
+      - name: hk_boss_and_miniboss
+        description: "Lista de jefes y mini-jefes del juego."
+        columns:
+          - name: name
+            data_type: varchar
+            description: "Nombre del jefe o mini-jefe."
+            tests:
+              - not_null
+          - name: health
+            data_type: varchar
+            description: "Cantidad de vida del enemigo."
+
+      - name: hk_challenges
+        description: "Retos o desafíos disponibles en el juego."
+        columns:
+          - name: challenge_id
+            data_type: varchar
+            description: "Identificador único del desafío."
+            tests:
+              - not_null
+              - unique
+          - name: challenge_name
+            data_type: varchar
+            description: "Nombre del desafío."
+            tests:
+              - not_null
+          - name: challenge_desc
+            data_type: varchar
+            description: "Descripción del desafío."
+            tests:
+              - not_null
+
+      - name: hk_charms
+        description: "Información de charms y sus efectos."
+        columns:
+          - name: source
+            data_type: varchar
+            description: "Nombre o fuente del charm."
+            tests:
+              - not_null
+          - name: damage
+            data_type: varchar
+            description: "Daño del charm si aplica."
+
+
+      - name: hk_enemies
+        description: "Listado de enemigos comunes del juego."
+        columns:
+          - name: name
+            data_type: varchar
+            description: "Nombre del enemigo."
+            tests:
+              - not_null
+          - name: health
+            data_type: varchar
+            description: "Vida del enemigo."
+          - name: c3
+            data_type: varchar
+            description: "Columna vacía. Error de ingesta."
+          - name: c4
+            data_type: varchar
+            description: "Columna vacía. Error de ingesta."
+          - name: c5
+            data_type: varchar
+            description: "Columna vacía. Error de ingesta.."
+          - name: c6
+            data_type: varchar
+            description: "Columna vacía. Error de ingesta."
+
+      - name: hk_events
+        description: "Eventos de gameplay generados por el usuario."
+        columns:
+          - name: event_id
+            data_type: varchar
+            description: "Identificador único del evento."
+            tests:
+              - not_null
+              - unique
+          - name: user_id
+            data_type: varchar
+            description: "Identificador del jugador."
+            tests:
+              - not_null
+          - name: gameplay_id
+            data_type: varchar
+            description: "ID de la sesión de gameplay."
+            tests:
+              - not_null
+          - name: gameplay_type
+            data_type: varchar
+            description: "Tipo de evento de gameplay."
+          - name: session_id
+            data_type: varchar
+            description: "Sesión a la que pertenece el evento."
+            tests:
+              - not_null
+          - name: event_type
+            data_type: varchar
+            description: "Tipo concreto del evento."
+            tests:
+              - not_null
+          - name: event_timestamp
+            data_type: timestamp_ntz
+            description: "Momento del evento."
+            tests:
+              - not_null
+          - name: location_x
+            data_type: number
+            description: "Coordenada X del evento."
+            tests:
+              - not_null
+          - name: location_y
+            data_type: number
+            description: "Coordenada Y del evento."
+            tests:
+              - not_null
+          - name: area
+            data_type: varchar
+            description: "Área en la que ocurrió el evento."
+          - name: boss_name
+            data_type: varchar
+            description: "Nombre del jefe si aplica."
+          - name: item
+            data_type: varchar
+            description: "Objeto asociado."
+          - name: grub_id
+            data_type: varchar
+            description: "Identificador único del grub."
+          - name: challenge_name
+            data_type: varchar
+            description: "Nombre del desafío si aplica."
+          - name: shop
+            data_type: varchar
+            description: "Tienda asociada al evento."
+          - name: item_bought
+            data_type: varchar
+            description: "Objeto comprado."
+          - name: cost_geo
+            data_type: number
+            description: "Coste del objeto en geo."
+          - name: filename
+            data_type: varchar
+            description: "Metadata de carga: archivo donde estaba guardado el gameplay."
+          - name: load_timestamp
+            data_type: timestamp_ntz
+            description: "Metadata de carga: Timestamp de carga del archivo."
+
+      - name: hk_grubs
+        description: "Ubicaciones de las larvas ocultas."
+        columns:
+          - name: type
+            data_type: varchar
+            description: "Tipo de objeto de la tabla. Siembre es grub."
+          - name: x
+            data_type: number
+            description: "Coordenada X de la larva."
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "Coordenada Y de la larva."
+            tests:
+              - not_null
+
+      - name: hk_locations
+        description: "Salas específicas dentro de áreas del mapa."
+        columns:
+          - name: location_id
+            data_type: varchar
+            description: "Identificador único de la localización."
+            tests:
+              - not_null
+              - unique
+          - name: area_id
+            data_type: varchar
+            description: "Área a la que pertenece la localización."
+            tests:
+              - not_null
+          - name: location_name
+            data_type: varchar
+            description: "Nombre de la localización."
+          - name: difficulty
+            data_type: varchar
+            description: "Nivel de dificultad."
+          - name: x_start
+            data_type: varchar
+            description: "Inicio X de la localización."
+            tests:
+              - not_null
+          - name: y_start
+            data_type: varchar
+            description: "Inicio Y de la localización."
+            tests:
+              - not_null
+          - name: x_end
+            data_type: varchar
+            description: "Fin X de la localización."
+            tests:
+              - not_null
+          - name: y_end
+            data_type: varchar
+            description: "Fin Y de la localización."
+            tests:
+              - not_null
+
+      - name: hk_mask
+        description: "Máscaras de vida encontradas en el mundo."
+        columns:
+          - name: id
+            data_type: number
+            description: "Identificador único de la máscara."
+            tests:
+              - not_null
+              - unique
+          - name: type
+            data_type: varchar
+            description: "Tipo de objeto de la tabla. Es siempre mask."
+          - name: x
+            data_type: number
+            description: "Coordenada X."
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "Coordenada Y."
+            tests:
+              - not_null
+
+      - name: hk_nail
+        description: "Evoluciones del Nail y su daño."
+        columns:
+          - name: source
+            data_type: varchar
+            description: "Origen o nivel del Nail."
+            tests:
+              - not_null
+          - name: damage
+            data_type: varchar
+            description: "Daño del Nail."
+
+      - name: hk_spells_abilitis
+        description: "Hechizos y habilidades mágicas del juego."
+        columns:
+          - name: spell
+            data_type: varchar
+            description: "Nombre del hechizo."
+            tests:
+              - not_null
+          - name: damage
+            data_type: varchar
+            description: "Daño causado por el hechizo."
+          - name: with_stone
+            data_type: varchar
+            description: "Daño con Shaman Stone."
+
+      - name: hk_steam_data
+        description: "Datos RAW de reviews de Steam."
+        columns:
+          - name: review_data
+            data_type: variant
+            description: "Datos en formato JSON de las reviews."
+
+      - name: hk_vessels
+        description: "Fragmentos de vasija y su ubicación."
+        columns:
+          - name: id
+            data_type: number
+            description: "Identificador único del fragmento."
+            tests:
+              - not_null
+              - unique
+          - name: type
+            data_type: varchar
+            description: "Tipo de fragmento."
+          - name: x
+            data_type: number
+            description: "Coordenada X."
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "Coordenada Y."
+            tests:
+              - not_null
