@@ -1,23 +1,28 @@
 {{
   config(
     materialized='view',
-    comment='Vista con las areas del juego casteadas'
+    comment='A view with the differents areas of the map and their coordenates.'
   )
 }}
 
-with source as (
-
-    select * from {{ source('hk_raw', 'hk_areas') }}
-
+WITH source AS (
+    SELECT
+        area_name
+        , try_cast(x_start AS int) as x_start
+        , try_cast(x_end AS int) as x_end
+        , try_cast(y_start AS int) as y_start
+        , try_cast(y_end AS int) as y_end
+    FROM
+        {{ source('hk_raw', 'hk_areas') }}
 )
 
-select 
-    area_id
-    , area_name
-    , nullif(x_start, "-")::int as x_start
-    , nullif(x_end, "-")::int as x_end
-    , nullif(y_start, "-")::int as y_start
-    , nullif(y_end, "-")::int as y_end
+SELECT
+  case 
+    when x_start is null 
+        then md5(replace(replace(trim(area_name), ' ', '_'), '-', '_'))
+    else md5(concat(x_start, x_end, y_start, y_end)) 
+    end as area_id
+   , *
+FROM
+    source
 
-
-from source

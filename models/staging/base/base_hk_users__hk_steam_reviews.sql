@@ -43,7 +43,6 @@ SELECT
 
     CURRENT_TIMESTAMP()::timestamp_ntz AS processed_timestamp
 
-
 FROM
     flattened_data
 

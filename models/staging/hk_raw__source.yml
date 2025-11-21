@@ -2,346 +2,326 @@ version: 2
 
 sources:
   - name: hk_raw
-    description: "Fuentes RAW del reino de Hollownest."
+    description: "schema with the raw data"
     database: hk_dev_bronze
     tables:
-
       - name: hk_areas
-        description: "Listado de áreas del mapa del juego con sus coordenadas."
+        description: "table with the differents areas of Hollownest"  
         columns:
           - name: area_id
             data_type: varchar
-            description: "Identificador único del área."
+            description: "primary key for each area"
             tests:
-              - not_null
               - unique
+              - not_null
           - name: area_name
             data_type: varchar
-            description: "Nombre del área."
+            description: "name of the area"
             tests:
+              - unique
               - not_null
           - name: x_start
             data_type: varchar
-            description: "Coordenada X inicial del área en el mapa."
+            description: "number of the pixel where the area start in the x axis"
             tests:
               - not_null
           - name: y_start
             data_type: varchar
-            description: "Coordenada Y inicial del área en el mapa."
+            description: "number of the pixel where the area start in the y axis"
             tests:
               - not_null
           - name: x_end
             data_type: varchar
-            description: "Coordenada X final del área en el mapa."
+            description: "number of the pixel where the area end in the x axis"
             tests:
               - not_null
           - name: y_end
             data_type: varchar
-            description: "Coordenada Y final del área en el mapa."
+            description: "number of the pixel where the area end in the y axis"
             tests:
               - not_null
           - name: subregions
             data_type: varchar
-            description: "Subregiones que pertenecen a esta área."
+            description: "number of rooms found in each region"
 
       - name: hk_bench
-        description: "Ubicaciones de bancos donde el jugador puede descansar."
+        description: "table with the differents bench found in Hollownest"
         columns:
           - name: type
             data_type: varchar
-            description: "Tipo de objeto que se analiza. Es todo el rato bench."
+            description: "name of the object found for each coordinate. There are only bench"
           - name: x
             data_type: number
-            description: "Coordenada X del banco."
+            description: "number of the pixel where the object is found in the x axis"
             tests:
               - not_null
           - name: y
             data_type: number
-            description: "Coordenada Y del banco."
+            description: "number of the pixel where the object is found in the y axis"
             tests:
               - not_null
 
       - name: hk_boss_and_miniboss
-        description: "Lista de jefes y mini-jefes del juego."
+        description: "table with the name of the boss and miniboss found in hollownest"
         columns:
           - name: name
             data_type: varchar
-            description: "Nombre del jefe o mini-jefe."
-            tests:
-              - not_null
+            description: "name of the boss or miniboss"
           - name: health
             data_type: varchar
-            description: "Cantidad de vida del enemigo."
+            description: "health of the boss or miniboss"
 
       - name: hk_challenges
-        description: "Retos o desafíos disponibles en el juego."
+        description: "table with the challenges that a player can achieve in the game"
         columns:
           - name: challenge_id
             data_type: varchar
-            description: "Identificador único del desafío."
+            description: "primary key that identify each challenge"
             tests:
-              - not_null
               - unique
+              - not_null
           - name: challenge_name
             data_type: varchar
-            description: "Nombre del desafío."
+            description: "name of the challenge"
             tests:
               - not_null
           - name: challenge_desc
             data_type: varchar
-            description: "Descripción del desafío."
-            tests:
-              - not_null
+            description: "information about how to achieve each challenge"
 
       - name: hk_charms
-        description: "Información de charms y sus efectos."
+        description: "table with the charms that can be found in hollownest"
         columns:
           - name: source
             data_type: varchar
-            description: "Nombre o fuente del charm."
-            tests:
-              - not_null
+            description: "name of the charm"
           - name: damage
             data_type: varchar
-            description: "Daño del charm si aplica."
-
+            description: "damage of the charm"
 
       - name: hk_enemies
-        description: "Listado de enemigos comunes del juego."
+        description: "table of normal enemies that can be found in hollownest"
         columns:
           - name: name
             data_type: varchar
-            description: "Nombre del enemigo."
-            tests:
-              - not_null
+            description: "name of the enemie"
           - name: health
             data_type: varchar
-            description: "Vida del enemigo."
+            description: "health of each enemie"
           - name: c3
             data_type: varchar
-            description: "Columna vacía. Error de ingesta."
+            description: "null colum"
           - name: c4
             data_type: varchar
-            description: "Columna vacía. Error de ingesta."
+            description: "null colum"
           - name: c5
             data_type: varchar
-            description: "Columna vacía. Error de ingesta.."
+            description: "null colum"
           - name: c6
             data_type: varchar
-            description: "Columna vacía. Error de ingesta."
+            description: "null colum"
 
       - name: hk_events
-        description: "Eventos de gameplay generados por el usuario."
+        description: "Table with events that happened in different gameplays"
         columns:
           - name: event_id
             data_type: varchar
-            description: "Identificador único del evento."
+            description: "primary key for each event"
             tests:
-              - not_null
               - unique
+              - not_null
           - name: user_id
             data_type: varchar
-            description: "Identificador del jugador."
+            description: "id of the user playing the game"
             tests:
               - not_null
           - name: gameplay_id
             data_type: varchar
-            description: "ID de la sesión de gameplay."
+            description: "ID of the gameplay. Each user can have multiple gameplays, but each gameplay is played by one user."
             tests:
               - not_null
           - name: gameplay_type
             data_type: varchar
-            description: "Tipo de evento de gameplay."
+            description: "There are diferents type of gameplays"
+            tests:
+              - not_null
           - name: session_id
             data_type: varchar
-            description: "Sesión a la que pertenece el evento."
+            description: "ID of the session each event is happening. A session start when you open the game and finish when you close it. You can play multiple gameplays in one session."
             tests:
               - not_null
           - name: event_type
             data_type: varchar
-            description: "Tipo concreto del evento."
-            tests:
-              - not_null
+            description: "The type of the event. Ex: hit, change room, defeat an enemie..."
           - name: event_timestamp
             data_type: timestamp_ntz
-            description: "Momento del evento."
+            description: "When the event has occured"
             tests:
               - not_null
           - name: location_x
             data_type: number
-            description: "Coordenada X del evento."
+            description: "The pixel in the x axis where the action has occurred"
             tests:
               - not_null
           - name: location_y
             data_type: number
-            description: "Coordenada Y del evento."
+            description: "The pixel in the y axis where the action has occurred"
             tests:
               - not_null
           - name: area
             data_type: varchar
-            description: "Área en la que ocurrió el evento."
+            description: "The area name where the action has occurred"
+            tests:
+              - not_null
           - name: boss_name
             data_type: varchar
-            description: "Nombre del jefe si aplica."
+            description: "Name of the boss defeated. Null if action is not boss_defeated"
           - name: item
             data_type: varchar
-            description: "Objeto asociado."
+            description: "Name of the item achieved. Null if action is not item_achieved"
           - name: grub_id
             data_type: varchar
-            description: "Identificador único del grub."
+            description: "Name of the grub liberated. Null if action is not grub_liberated"
           - name: challenge_name
             data_type: varchar
-            description: "Nombre del desafío si aplica."
+            description: "Name of the challenge achieved. Null if action is not challenge_achieved"
           - name: shop
             data_type: varchar
-            description: "Tienda asociada al evento."
+            description: "Name of the shop arrived. Null if action is not shop"
           - name: item_bought
             data_type: varchar
-            description: "Objeto comprado."
+            description: "Name of the item bought. Null if action is not item_bought"
           - name: cost_geo
             data_type: number
-            description: "Coste del objeto en geo."
+            description: "Quantity of geo lost. Null if action is not loss_geo"
           - name: filename
             data_type: varchar
-            description: "Metadata de carga: archivo donde estaba guardado el gameplay."
+            description: "Metadata of where the event is located in AWS"
           - name: load_timestamp
             data_type: timestamp_ntz
-            description: "Metadata de carga: Timestamp de carga del archivo."
+            description: "Metadata of the time when the event was load to snowflake"
 
       - name: hk_grubs
-        description: "Ubicaciones de las larvas ocultas."
+        description: "table with the location of the differents grubs found in hollowenst"
         columns:
           - name: type
             data_type: varchar
-            description: "Tipo de objeto de la tabla. Siembre es grub."
+            description: "Name of the object found for each coordinate. There are only grubs"
+            tests:
+              - not_null
           - name: x
             data_type: number
-            description: "Coordenada X de la larva."
+            description: "Number of the pixel where the object is found in the x axis"
             tests:
               - not_null
           - name: y
             data_type: number
-            description: "Coordenada Y de la larva."
+            description: "Number of the pixel where the object is found in the y axis"
             tests:
               - not_null
 
       - name: hk_locations
-        description: "Salas específicas dentro de áreas del mapa."
+        description: "Table with the specifics rooms found in the game "
         columns:
           - name: location_id
             data_type: varchar
-            description: "Identificador único de la localización."
-            tests:
-              - not_null
-              - unique
+            description: "Primary key of the room"
           - name: area_id
             data_type: varchar
-            description: "Área a la que pertenece la localización."
-            tests:
-              - not_null
+            description: "Area ID where is the room"
           - name: location_name
             data_type: varchar
-            description: "Nombre de la localización."
+            description: "Name of the location"
           - name: difficulty
             data_type: varchar
-            description: "Nivel de dificultad."
+            description: "Difficulty of the area ranked from 0 to 10"
           - name: x_start
             data_type: varchar
-            description: "Inicio X de la localización."
+            description: "Number of the pixel where the location start found in the x axis"
             tests:
               - not_null
           - name: y_start
             data_type: varchar
-            description: "Inicio Y de la localización."
+            description: "Number of the pixel where the location start found in the y axis"
             tests:
               - not_null
           - name: x_end
             data_type: varchar
-            description: "Fin X de la localización."
+            description: "Number of the pixel where the location end found in the x axis"
             tests:
               - not_null
           - name: y_end
             data_type: varchar
-            description: "Fin Y de la localización."
+            description: "Number of the pixel where the location end in the y axis"
             tests:
               - not_null
 
       - name: hk_mask
-        description: "Máscaras de vida encontradas en el mundo."
+        description: "Table with the location of the masks found in hollownest"
         columns:
           - name: id
             data_type: number
-            description: "Identificador único de la máscara."
-            tests:
-              - not_null
-              - unique
+            description: "Primary key of the mask"
           - name: type
             data_type: varchar
-            description: "Tipo de objeto de la tabla. Es siempre mask."
+            description: "Name of the type of object. Is always mask"
           - name: x
             data_type: number
-            description: "Coordenada X."
+            description: "Number of the pixel where the mask is found in the x axis"
             tests:
               - not_null
           - name: y
             data_type: number
-            description: "Coordenada Y."
+            description: "Number of the pixel where the mask is found in the y axis"
             tests:
               - not_null
 
       - name: hk_nail
-        description: "Evoluciones del Nail y su daño."
+        description: "Table with the different damage of the nail based on the attack and the level of the nail"
         columns:
           - name: source
             data_type: varchar
-            description: "Origen o nivel del Nail."
-            tests:
-              - not_null
+            description: "Name of the source of damage, with the description of the nail or the attack."
           - name: damage
             data_type: varchar
-            description: "Daño del Nail."
+            description: "Number of the average of damage that can be done"
 
       - name: hk_spells_abilitis
-        description: "Hechizos y habilidades mágicas del juego."
+        description: "Table with the spells and abilitis avaible for the hollows"
         columns:
           - name: spell
             data_type: varchar
-            description: "Nombre del hechizo."
-            tests:
-              - not_null
+            description: "Name of the spell"
           - name: damage
             data_type: varchar
-            description: "Daño causado por el hechizo."
+            description: "Number of the average of damage that can be done"
           - name: with_stone
             data_type: varchar
-            description: "Daño con Shaman Stone."
+            description: "Number of the average of damage that can be done if the shamman stone is equiped"
 
       - name: hk_steam_data
-        description: "Datos RAW de reviews de Steam."
+        description: "Reviews about hollownest on steam"
         columns:
           - name: review_data
             data_type: variant
-            description: "Datos en formato JSON de las reviews."
+            description: "Information from a json. Need to be structured"
 
       - name: hk_vessels
-        description: "Fragmentos de vasija y su ubicación."
+        description: "Table with the location of the vessels found in hollownest"
         columns:
           - name: id
             data_type: number
-            description: "Identificador único del fragmento."
-            tests:
-              - not_null
-              - unique
+            description: "Primary key of the mask"
           - name: type
             data_type: varchar
-            description: "Tipo de fragmento."
+            description: "Name of the type of object. Is always vessel"
           - name: x
             data_type: number
-            description: "Coordenada X."
+            description: "Number of the pixel where the vessel is found in the x axis"
             tests:
               - not_null
           - name: y
             data_type: number
-            description: "Coordenada Y."
+            description: "Number of the pixel where the vessel is found in the y axis"
             tests:
               - not_null
