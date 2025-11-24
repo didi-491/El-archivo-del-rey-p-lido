@@ -21,8 +21,4 @@ SELECT distinct
   , CAST(SPLIT_PART(damage, 'x', 1) AS FLOAT) AS nail_modification
 FROM
     source
-UNION 
-SELECT 
- md5(replace(replace(trim( 'Fury of the Fallen'), ' ', '_'), '-', '_')) as nail_modifier_id
-  , 'Fury of the Fallen' as nail_modifier_desc
-  , CAST('1.75' as float) as nail_modification
+

@@ -14,8 +14,8 @@ WITH source AS (
 
 SELECT
   SHA1(CONCAT(x, '_', y)) as mask_id
-  , x::int as x_coordenate
-  , y::int as y_coordenate
+  , x::int as location_y
+  , y::int as location_x
 FROM
     source
 

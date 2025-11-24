@@ -9,7 +9,7 @@ WITH source AS (
     SELECT
         *
     FROM
-        {{ source('hk_raw', 'hk_spells_abilitis') }}
+        {{ source('hk_raw', 'hk_boss_and_miniboss') }}
 )
 
 SELECT

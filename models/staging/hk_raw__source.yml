@@ -140,24 +140,29 @@ sources:
             description: "ID of the gameplay. Each user can have multiple gameplays, but each gameplay is played by one user."
             tests:
               - not_null
-          - name: gameplay_type
-            data_type: varchar
-            description: "There are diferents type of gameplays"
-            tests:
-              - not_null
           - name: session_id
             data_type: varchar
             description: "ID of the session each event is happening. A session start when you open the game and finish when you close it. You can play multiple gameplays in one session."
             tests:
               - not_null
+          - name: gameplay_type
+            data_type: varchar
+            description: "There are diferents type of gameplays"
+            tests:
+              - not_null
           - name: event_type
             data_type: varchar
             description: "The type of the event. Ex: hit, change room, defeat an enemie..."
-          - name: event_timestamp
-            data_type: timestamp_ntz
-            description: "When the event has occured"
-            tests:
-              - not_null
+          - name: nail_id
+            data_type: varchar
+          - name: health
+            data_type: number 
+          - name: blue_mask
+            data_type: number 
+          - name: soul
+            data_type: number 
+          - name: objective
+            data_type: varachar
           - name: location_x
             data_type: number
             description: "The pixel in the x axis where the action has occurred"
@@ -168,32 +173,11 @@ sources:
             description: "The pixel in the y axis where the action has occurred"
             tests:
               - not_null
-          - name: area
-            data_type: varchar
-            description: "The area name where the action has occurred"
+          - name: event_timestamp
+            data_type: timestamp_ntz
+            description: "When the event has occured"
             tests:
               - not_null
-          - name: boss_name
-            data_type: varchar
-            description: "Name of the boss defeated. Null if action is not boss_defeated"
-          - name: item
-            data_type: varchar
-            description: "Name of the item achieved. Null if action is not item_achieved"
-          - name: grub_id
-            data_type: varchar
-            description: "Name of the grub liberated. Null if action is not grub_liberated"
-          - name: challenge_name
-            data_type: varchar
-            description: "Name of the challenge achieved. Null if action is not challenge_achieved"
-          - name: shop
-            data_type: varchar
-            description: "Name of the shop arrived. Null if action is not shop"
-          - name: item_bought
-            data_type: varchar
-            description: "Name of the item bought. Null if action is not item_bought"
-          - name: cost_geo
-            data_type: number
-            description: "Quantity of geo lost. Null if action is not loss_geo"
           - name: filename
             data_type: varchar
             description: "Metadata of where the event is located in AWS"
@@ -325,3 +309,63 @@ sources:
             description: "Number of the pixel where the vessel is found in the y axis"
             tests:
               - not_null
+
+      - name: hk_fights
+        description: "Staging model for combat events in Hollow Knight, containing detailed information about player interactions, enemies, damage, and combat phases."
+        columns:
+          - name: event_id
+            description: "Unique identifier for the combat event."
+            tests:
+              - not_null
+
+          - name: timestamp
+            description: "Original timestamp of the event, stored as text."
+
+          - name: user_id
+            description: "Identifier of the user/player associated with the event."
+
+          - name: gameplay_id
+            description: "Identifier of the gameplay session in which the event occurred."
+
+          - name: session_id
+            description: "Identifier of the specific player session."
+
+          - name: gameplay_type
+            description: "Type of gameplay (e.g., normal exploration, boss fight)."
+
+          - name: event_type
+            description: "Type of combat event recorded."
+            tests:
+              - not_null
+
+          - name: enemy
+            description: "Name of the enemy involved in the event."
+            tests:
+              - not_null
+
+          - name: hit_type
+            description: "Type of hit performed or received during the event."
+
+          - name: direction
+            description: "Direction from which the hit occurred."
+
+          - name: damage
+            description: "Amount of damage dealt or received, stored as text."
+
+          - name: soul_change
+            description: "Change in Soul value resulting from the event."
+
+          - name: soul_total
+            description: "Total amount of Soul after the event."
+
+          - name: heal_amount
+            description: "Amount of healing performed during the event."
+
+          - name: fight_phase
+            description: "Phase of the combat sequence."
+
+          - name: filename
+            description: "Name of the source file where the event was recorded."
+
+          - name: load_timestamp
+            description: "Snowflake load timestamp indicating when the record was ingested."

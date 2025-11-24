@@ -14,8 +14,8 @@ WITH source AS (
 
 SELECT
   SHA1(CONCAT(x, '_', y)) as grub_id
-  , x::int as x_coordenate
-  , y::int as y_coordenate
+  , x::int as location_x
+  , y::int as location_y
 FROM
     source
 

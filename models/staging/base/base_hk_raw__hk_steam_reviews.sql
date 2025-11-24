@@ -40,6 +40,7 @@ SELECT
     review_object:author:num_games_owned::number AS num_games_owned,
     review_object:author:num_reviews::number AS num_reviews,
     review_object:author:last_played::timestamp_ntz AS last_played,
+    'steam' as eshop_desc,
 
     CURRENT_TIMESTAMP()::timestamp_ntz AS processed_timestamp
 
