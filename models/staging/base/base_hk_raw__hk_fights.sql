@@ -8,7 +8,7 @@
 WITH source AS (
     SELECT *,
     replace(replace(trim(enemy), ' ', '_'), '-', '_') as enemy_name_clean,
-    replace(replace(trim(event_type), ' ', '_'), '-', '_') as event_type_clean,
+    replace(replace(trim(hit_type), ' ', '_'), '-', '_') as hit_type_clean,
 
     FROM
         {{ source('hk_raw', 'hk_fights') }}
@@ -17,12 +17,12 @@ WITH source AS (
 SELECT
   event_id
   , user_id
-  , timestamp::timestamp as event_timestamp
+  , timestamp::timestamp as event_timestamp_utc
   , gameplay_id
   , session_id
   , gameplay_type
   , event_type
-  , enemy
+  , md5(enemy_name_clean) as enemy_id
   , hit_type
   , direction
   , damage::int as damage

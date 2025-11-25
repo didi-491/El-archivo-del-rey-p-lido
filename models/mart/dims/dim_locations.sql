@@ -2,7 +2,7 @@
 
 select
     item_id,
-    object_type,
+    item_type,
     location_x,
     location_y
 from {{ ref('stg_hk_raw__hk_locations') }}
