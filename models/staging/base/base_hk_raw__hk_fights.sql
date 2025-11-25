@@ -16,13 +16,13 @@ WITH source AS (
 
 SELECT
   event_id
-  , timestamp::timestamp as event_timestamp
   , user_id
+  , timestamp::timestamp as event_timestamp
   , gameplay_id
   , session_id
   , gameplay_type
-  , md5(event_type_clean) as event_type
-  , md5(enemy_name_clean) as enemy_id
+  , event_type
+  , enemy
   , hit_type
   , direction
   , damage::int as damage

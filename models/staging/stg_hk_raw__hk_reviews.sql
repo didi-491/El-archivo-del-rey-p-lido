@@ -1,6 +1,8 @@
 {{
   config(
-    materialized='view',
+    materialized='incremental',
+    unique_key = 'recommendation_id',
+    on_schema_change='fail',
     comment='A view with the review information from the steam json.'
   )
 }}

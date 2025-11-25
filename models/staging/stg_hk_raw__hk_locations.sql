@@ -7,7 +7,8 @@
 
 WITH bench AS (
     SELECT
-        bench_id as object_id
+        md5(concact('bench_', location_x , '_', location_y)) as item_id
+        , 'bench' as item_type
         , location_x
         , location_y
     FROM
@@ -16,37 +17,36 @@ WITH bench AS (
 
 grubs as (
     SELECT
-        grub_id as object_id
+        md5(concact('grub_', location_x , '_', location_y)) as item_id
+        , 'grub' as item_type
         , location_x
         , location_y
-        , 'grub' as object_type
     FROM
         {{ ref('base_hk_raw__hk_grubs') }}
 ),
 
 mask as (
     SELECT
-        mask_id as object_id
+        md5(concact('mask_', location_x , '_', location_y)) as item_id
+        , 'mask' as item_type
         , location_x
         , location_y
-        , 'mask' as object_type
     FROM
         {{ ref('base_hk_raw__hk_mask') }}
 ),
 
 vessel as (
     SELECT
-        vessel_fragment_id as object_id
+         md5(concact('vessel_', location_x , '_', location_y)) as item_id
+        , 'vessel' as item_type
         , location_x
         , location_y
-        , 'vessel' as object_type
     FROM
         {{ ref('base_hk_raw__hk_vessels') }}
 )
 
 SELECT
   *
-  , 'bench' as object_type
 FROM
     bench
 

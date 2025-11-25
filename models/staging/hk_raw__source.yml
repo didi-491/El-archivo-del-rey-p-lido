@@ -203,43 +203,7 @@ sources:
             description: "Number of the pixel where the object is found in the y axis"
             tests:
               - not_null
-
-      - name: hk_locations
-        description: "Table with the specifics rooms found in the game "
-        columns:
-          - name: location_id
-            data_type: varchar
-            description: "Primary key of the room"
-          - name: area_id
-            data_type: varchar
-            description: "Area ID where is the room"
-          - name: location_name
-            data_type: varchar
-            description: "Name of the location"
-          - name: difficulty
-            data_type: varchar
-            description: "Difficulty of the area ranked from 0 to 10"
-          - name: x_start
-            data_type: varchar
-            description: "Number of the pixel where the location start found in the x axis"
-            tests:
-              - not_null
-          - name: y_start
-            data_type: varchar
-            description: "Number of the pixel where the location start found in the y axis"
-            tests:
-              - not_null
-          - name: x_end
-            data_type: varchar
-            description: "Number of the pixel where the location end found in the x axis"
-            tests:
-              - not_null
-          - name: y_end
-            data_type: varchar
-            description: "Number of the pixel where the location end in the y axis"
-            tests:
-              - not_null
-
+              
       - name: hk_mask
         description: "Table with the location of the masks found in hollownest"
         columns:

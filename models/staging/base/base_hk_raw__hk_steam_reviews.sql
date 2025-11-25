@@ -1,6 +1,5 @@
 {{
   config(
-    materialized='view',
     comment='A view that flattens the raw steam review JSON data into structured columns.'
   )
 }}

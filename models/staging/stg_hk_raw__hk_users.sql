@@ -1,8 +1,10 @@
 
 {{
   config(
-    materialized='view',
-    comment='A view that flattens the raw steam review JSON data into structured columns.'
+    materialized='incremental',
+    unique_key = 'user_id',
+    on_schema_change='fail',
+    comment='An incremental table that flattens the raw steam review JSON data into structured columns.'
   )
 }}
 
@@ -20,6 +22,7 @@ select
     , num_reviews
     , last_played
     , md5(replace(replace(trim(eshop_desc), ' ', '_'), '-', '_')) as eshop_id
+    -- meter el porcentaje de juego para el snapshot
 from base
 
 

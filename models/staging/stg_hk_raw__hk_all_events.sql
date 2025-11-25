@@ -1,32 +1,75 @@
 {{
   config(
-    materialized='view',
-    comment='A view with the differents areas of the map and their coordenates.'
+    materialized='incremental',
+    unique_key = 'event_id',
+    on_schema_change='append_new_columns',
+    comment='A view with all of the events registered in the game.'
+
   )
 }}
 
-WITH source AS (
-    SELECT *
+WITH events AS (
+    SELECT
+        event_id,
+        user_id,
+        event_timestamp,
+        gameplay_id,
+        session_id,
+        gameplay_type,
+        event_type,
+        NULL::varchar AS enemy,
+        NULL::varchar AS hit_type,
+        NULL::varchar AS direction,
+        NULL::int AS damage,
+        NULL::int AS soul_change,
+        NULL::int AS soul_total,
+        NULL::varchar AS fight_phase,
+        nail_id,
+        health AS health,
+        blue_health AS blue_health,
+        soul AS soul,
+        objective,
+        location_x,
+        location_y
+    FROM {{ ref('base_hk_raw__hk_events') }}
+),
+ 
 
-    FROM
-        {{ ref('base_hk_raw__hk_events') }}
+fights AS (
+    SELECT
+        event_id,
+        user_id,
+        event_timestamp,
+        gameplay_id,
+        session_id,
+        gameplay_type,
+        event_type,
+        enemy,
+        hit_type,
+        direction,
+        damage,
+        soul_change,
+        soul_total,
+        fight_phase,
+        NULL::varchar AS nail_id,
+        NULL::int AS health,
+        NULL::int AS blue_health,
+        NULL::int AS soul,
+        NULL::varchar AS objective,
+        NULL::int AS location_x,
+        NULL::int AS location_y
+    FROM {{ ref('base_hk_raw__hk_fights') }}
 )
 
-SELECT
-  event_id
-  , user_id
-  , gameplay_id
-  , session_id
-  , gameplay_type
-  , event_type
-  , nail_id
-  , health::int as health
-  , blue_health::int as blue_health
-  , soul::int as soul
-  , objective
-  , location_x::int as location_x
-  , location_y::int as location_y
-  , event_timestamp::timestamp as event_timestamp
-FROM
-    source
 
+
+SELECT
+  *
+FROM
+    events
+
+union 
+
+Select * 
+from 
+    fights
