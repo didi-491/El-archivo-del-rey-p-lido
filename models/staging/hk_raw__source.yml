@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: hk_raw
     description: "schema with the raw data"
-    database: hk_dev_bronze
+    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE"
     tables:
       - name: hk_areas
         description: "table with the differents areas of Hollownest"  
@@ -70,6 +70,8 @@ sources:
           - name: health
             data_type: varchar
             description: "health of the boss or miniboss"
+          - name: location_x
+          - name: location_y
 
       - name: hk_challenges
         description: "table with the challenges that a player can achieve in the game"
@@ -234,7 +236,7 @@ sources:
             data_type: varchar
             description: "Number of the average of damage that can be done"
 
-      - name: hk_spells_abilitis
+      - name: hk_spells
         description: "Table with the spells and abilitis avaible for the hollows"
         columns:
           - name: spell
@@ -243,9 +245,6 @@ sources:
           - name: damage
             data_type: varchar
             description: "Number of the average of damage that can be done"
-          - name: with_stone
-            data_type: varchar
-            description: "Number of the average of damage that can be done if the shamman stone is equiped"
 
       - name: hk_steam_data
         description: "Reviews about hollownest on steam"

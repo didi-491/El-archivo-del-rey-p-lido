@@ -21,5 +21,17 @@ vars:
   hk_key_prod: "{{ env_var('DCL_HK_PROD', 'hk_prod_default') }}"
 
 models:
-  hollowknight_proyect:
+  +transient: false
+  curso:
+    # Applies to all files under models/example/
+
+    staging:
+      +materialized: view
+      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER"
+
+      
+    marts:
+      +materialized: table
+      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD"
+
 
