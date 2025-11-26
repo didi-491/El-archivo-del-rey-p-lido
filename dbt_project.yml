@@ -16,9 +16,6 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-vars:
-  hk_key: "{{ env_var('DCL_HK_DEV', '_fail') }}"
-  hk_key_prod: "{{ env_var('DCL_HK_PROD', 'hk_prod_default') }}"
 
 models:
   +transient: false
@@ -27,11 +24,18 @@ models:
 
     staging:
       +materialized: view
-      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER"
-
+      +database: "hk_dev_SILVER"
+      +schema: 'hk_dcl_dbt'
       
     marts:
       +materialized: table
-      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD"
+      +database: "hk_dev_GOLD"
+      +schema: 'hk_dcl_dbt'
 
-
+seeds:
+  +schema: seed_data
+  +database: "hk_dev__BRONZE"        
+snapshots:
+  +transient: false
+  +target_database: "hk_dev_SILVER"
+  +target_schema: snapshots

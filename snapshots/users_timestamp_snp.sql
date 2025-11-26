@@ -3,7 +3,7 @@
 {{
     config(
         target_schema='snapshots',
-        unique_key='usser_id',
+        unique_key='user_id',
         strategy='check',
         check_cols=['playtime_forever_minutes', 'last_played']
     )

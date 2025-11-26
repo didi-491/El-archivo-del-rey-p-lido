@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: hk_raw
     description: "schema with the raw data"
-    database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE"
+    database: "hk_dev_BRONZE"
     tables:
       - name: hk_areas
         description: "table with the differents areas of Hollownest"  
@@ -61,7 +61,7 @@ sources:
             tests:
               - not_null
 
-      - name: hk_boss_and_miniboss
+      - name: hk_bosses_and_minibosses
         description: "table with the name of the boss and miniboss found in hollownest"
         columns:
           - name: name
