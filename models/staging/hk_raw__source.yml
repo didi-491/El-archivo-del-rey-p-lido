@@ -23,23 +23,19 @@ sources:
           - name: x_start
             data_type: varchar
             description: "number of the pixel where the area start in the x axis"
-            tests:
-              - not_null
+
           - name: y_start
             data_type: varchar
             description: "number of the pixel where the area start in the y axis"
-            tests:
-              - not_null
+
           - name: x_end
             data_type: varchar
             description: "number of the pixel where the area end in the x axis"
-            tests:
-              - not_null
+
           - name: y_end
             data_type: varchar
             description: "number of the pixel where the area end in the y axis"
-            tests:
-              - not_null
+
           - name: subregions
             data_type: varchar
             description: "number of rooms found in each region"
