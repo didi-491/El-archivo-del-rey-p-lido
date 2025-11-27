@@ -1,4 +1,4 @@
-11:45:27 version: 2
+version: 2
 
 models:
   - name: stg_hk_raw__hk_areas
@@ -337,3 +337,9 @@ models:
   - name: stg_hk_raw__hk_charms_builded
     description: ""
     columns:
+      - name: charm_id
+      - name: charm_name
+      - name: charm_type
+      - name: damage_description
+      - name: notches_required
+      - name: long_description

@@ -14,17 +14,15 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
-
 models:
-  +transient: false
-  curso:
-    # Applies to all files under models/example/
 
+  +transient: false
+  hollowknight_proyect:
     staging:
       +materialized: view
       +database: "hk_dev_SILVER"
       +schema: 'hk_dcl_dbt'
-    marts:
+    mart: 
       +materialized: table
       +database: "hk_dev_GOLD"
       +schema: 'hk_dcl_dbt'
@@ -32,9 +30,11 @@ models:
 seeds:
   +schema: seed_data
   +database: "hk_dev__BRONZE"
+
 snapshots:
   +transient: false
   +target_database: "hk_dev_SILVER"
   +target_schema: snapshots
+
 flags:
   require_generic_test_arguments_property: true
