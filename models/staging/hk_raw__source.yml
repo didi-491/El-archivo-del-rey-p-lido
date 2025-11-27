@@ -94,12 +94,29 @@ sources:
       - name: hk_charms
         description: "table with the charms that can be found in hollownest"
         columns:
-          - name: source
+          - name: charm_name
             data_type: varchar
             description: "name of the charm"
+          - name: x_location
+            data_type: varchar
+            description: "location on the x axis"
+          - name: y_location
+            data_type: varchar
+            description: "location on the y axis"
+          - name: type
+            data_type: varchar
+            description: "type of ability of the charm"
           - name: damage
             data_type: varchar
             description: "damage of the charm"
+          - name: notches
+            data_type: varchar
+            description: "damage of the charm"
+          - name: description
+            data_type: varchar
+            description: "long descripcion of the charm"
+          - name: c8
+            data_type: varchar
 
       - name: hk_enemies
         description: "table of normal enemies that can be found in hollownest"

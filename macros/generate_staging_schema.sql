@@ -7,3 +7,5 @@
     ) }}
 
 {% endmacro %}
+
+-- dbt run-operation generate_staging_schema

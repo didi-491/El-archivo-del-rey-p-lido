@@ -41,6 +41,16 @@ vessel as (
         , location_y
     FROM
         {{ ref('base_hk_raw__hk_vessels') }}
+), 
+
+charms as (
+    SELECT
+        charm_id_location as item_id
+        , 'charm' as item_type
+        , location_x
+        , location_y
+    FROM
+        {{ ref('base_hk_raw__hk_charms') }}
 )
 
 SELECT
@@ -51,5 +61,6 @@ FROM
 union select * from grubs
 union select * from mask
 union select * from vessel
+union select * from charms
 
 
