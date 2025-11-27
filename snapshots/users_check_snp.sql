@@ -1,4 +1,4 @@
-{% snapshot users_timestamp_snp %}
+{% snapshot users_chechk_snp %}
 
 {{
     config(
