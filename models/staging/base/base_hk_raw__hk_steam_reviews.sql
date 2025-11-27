@@ -1,5 +1,5 @@
 {{ config(
-    meta={'comment': 'A view that flattens the raw steam review JSON data into structured columns.'}
+    materialized="view"
 ) }}
 
 WITH raw_reviews_source AS (
@@ -39,7 +39,7 @@ SELECT
     review_object:author:last_played::timestamp_ntz AS last_played,
     'steam' as eshop_desc,
 
-    CURRENT_TIMESTAMP()::timestamp_ntz AS processed_timestamp
+    CONVERT_TIMEZONE('Europe/Madrid', CURRENT_TIMESTAMP())::TIMESTAMP_NTZ AS processed_timestamp
 
 FROM
     flattened_data

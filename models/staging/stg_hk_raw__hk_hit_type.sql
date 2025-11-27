@@ -1,6 +1,5 @@
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view with the nail types and their damage.'}
+    materialized="view"
 ) }}
 
 

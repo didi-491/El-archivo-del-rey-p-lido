@@ -18,7 +18,7 @@ SELECT
   , session_id
   , gameplay_type
   , event_type
-  , nail_id
+  , REGEXP_REPLACE(nail_id, '[^0-9]', '')::int AS nail_id
   , health::int as health
   , blue_mask::int as blue_health
   , soul::int as soul
@@ -51,6 +51,6 @@ SELECT
   end as objective
   , location_x::int as location_x
   , location_y::int as location_y
-  , event_timestamp::timestamp as event_timestamp_utc
+  , CONVERT_TIMEZONE('Europe/Madrid', event_timestamp)::TIMESTAMP_NTZ as event_timestamp_utc
 FROM
     source

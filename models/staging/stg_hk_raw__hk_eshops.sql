@@ -1,7 +1,6 @@
 
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view that flattens the raw steam review JSON data into structured columns.'}
+    materialized="view"
 ) }}
 
 WITH base AS (

@@ -1,6 +1,5 @@
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view with the nail types and their damage.'}
+    materialized="view"
 ) }}
 
 WITH source AS (
@@ -16,6 +15,7 @@ SELECT distinct
   md5(replace(replace(trim(source), ' ', '_'), '-', '_')) as nail_id
   , source as nail_desc
   , damage::int as nail_damage
+  , rank() over (order by nail_damage ASC) as nail_lvl
 FROM
     source
 

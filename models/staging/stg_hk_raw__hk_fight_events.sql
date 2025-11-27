@@ -1,6 +1,6 @@
 {{ config(
     materialized="incremental", 
-    unique_key="event_id", 
+    unique_key="event_id"
 ) }}
 
 WITH source AS (
@@ -15,7 +15,7 @@ WITH source AS (
 SELECT
   event_id
   , user_id
-  , timestamp::timestamp as event_timestamp_utc
+  ,  CONVERT_TIMEZONE('Europe/Madrid', timestamp)::TIMESTAMP_NTZ as event_timestamp_utc
   , gameplay_id
   , session_id
   , gameplay_type

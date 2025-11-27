@@ -1,6 +1,5 @@
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view with the grubs location.'}
+    materialized="view"
 ) }}
 
 WITH source AS (
@@ -11,8 +10,7 @@ WITH source AS (
 )
 
 SELECT
-  SHA1(CONCAT(x, '_', y)) as grub_id
-  , x::int as location_x
+   x::int as location_x
   , y::int as location_y
 FROM
     source

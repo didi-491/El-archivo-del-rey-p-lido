@@ -1,9 +1,5 @@
 {{ config(
-    materialized="incremental", 
-    incremental_strategy="merge", 
-    unique_key="recommendation_id", 
-    on_schema_change="fail", 
-    meta={'comment': 'A view with the review information from the steam json.'}
+    materialized="view"
 ) }}
 
 WITH base AS (
@@ -18,8 +14,8 @@ select
     , user_steam_id as user_id 
     , review_text
     , language
-    , created_at as created_at_utc
-    , modified_at as modified_at_utc
+    , CONVERT_TIMEZONE('Europe/Madrid', created_at)::TIMESTAMP_NTZ  as created_at_utc
+    , CONVERT_TIMEZONE('Europe/Madrid', modified_at)::TIMESTAMP_NTZ  as modified_at_utc
     , is_voted_up
     , votes_up_count
     , votes_funny_count

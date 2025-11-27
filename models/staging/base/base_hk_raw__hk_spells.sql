@@ -1,6 +1,5 @@
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view with the differents areas of the map and their coordenates.'}
+    materialized="view"
 ) }}
 
 WITH source AS (
@@ -12,7 +11,8 @@ WITH source AS (
 
 SELECT
    md5(replace(replace(trim(spell), ' ', '_'), '-', '_')) as spell_id
-   , *
+   , spell
+   , damage::int as damage 
 FROM
     source
 

@@ -20,20 +20,21 @@ models:
   hollowknight_proyect:
     staging:
       +materialized: view
-      +database: "hk_dev_SILVER"
+      +database: "{{ env_var('DBT_ENVIRONMENT') }}_SILVER"
       +schema: 'hk_dcl_dbt'
     mart: 
       +materialized: table
-      +database: "hk_dev_GOLD"
-      +schema: 'hk_dcl_dbt'
+      +database: "{{ env_var('DBT_ENVIRONMENT') }}_GOLD"
+      core:
+        +schema: core
 
 seeds:
   +schema: seed_data
-  +database: "hk_dev__BRONZE"
+  +database: "{{ env_var('DBT_ENVIRONMENT') }}_BRONZE"
 
 snapshots:
   +transient: false
-  +target_database: "hk_dev_SILVER"
+  +target_database: "{{ env_var('DBT_ENVIRONMENT') }}_SILVER"
   +target_schema: snapshots
 
 flags:

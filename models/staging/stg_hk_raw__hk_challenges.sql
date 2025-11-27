@@ -1,6 +1,5 @@
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view with the differents areas of the map and their coordenates.'}
+    materialized="view"
 ) }}
 
 WITH source AS (

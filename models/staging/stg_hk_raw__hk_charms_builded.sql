@@ -1,6 +1,5 @@
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view with the differents charms that can bue equiped.'}
+    materialized="view"
 ) }}
 
 

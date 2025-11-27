@@ -1,345 +1,375 @@
 version: 2
 
 models:
-  - name: stg_hk_raw__hk_areas
-    description: ""
-    columns:
-      - name: area_id
-        data_type: varchar
-        description: ""
-
-      - name: area_name
-        data_type: varchar
-        description: ""
-
-      - name: x_start
-        data_type: number
-        description: ""
-
-      - name: x_end
-        data_type: number
-        description: ""
-
-      - name: y_start
-        data_type: number
-        description: ""
-
-      - name: y_end
-        data_type: number
-        description: ""
-
-  - name: stg_hk_raw__hk_all_enemies
-    description: ""
-    columns:
-      - name: enemie_id
-        data_type: varchar
-        description: ""
-
-      - name: name
-        data_type: varchar
-        description: ""
-
-      - name: enemy_health
-        data_type: number
-        description: ""
-
-      - name: x_location
-        data_type: number
-        description: ""
-
-      - name: y_location
-        data_type: number
-        description: ""
-
-      - name: type_enemy
-        data_type: varchar
-        description: ""
-
-  - name: stg_hk_raw__hk_challenges
-    description: ""
-    columns:
-      - name: challenge_id
-        data_type: varchar
-        description: ""
-
-      - name: challenge_name
-        data_type: varchar
-        description: ""
-
-      - name: challenge_desc
-        data_type: varchar
-        description: ""
-
-  - name: stg_hk_raw__hk_events
-    description: ""
-    columns:
-      - name: event_id
-        data_type: varchar
-        description: ""
-
-      - name: user_id
-        data_type: varchar
-        description: ""
-
-      - name: gameplay_id
-        data_type: varchar
-        description: ""
-
-      - name: session_id
-        data_type: varchar
-        description: ""
-
-      - name: gameplay_type
-        data_type: varchar
-        description: ""
-
-      - name: event_type
-        data_type: varchar
-        description: ""
-
-      - name: nail_id
-        data_type: varchar
-        description: ""
-
-      - name: health
-        data_type: number
-        description: ""
-
-      - name: blue_health
-        data_type: number
-        description: ""
-
-      - name: soul
-        data_type: number
-        description: ""
-
-      - name: objective
-        data_type: varchar
-        description: ""
-
-      - name: location_x
-        data_type: number
-        description: ""
-
-      - name: location_y
-        data_type: number
-        description: ""
-
-      - name: event_timestamp_utc
-        data_type: timestamp_ntz
-        description: ""
-
-  - name: stg_hk_raw__hk_hit_type
-    description: ""
-    columns:
-      - name: nail_modifier_id
-        data_type: varchar
-        description: ""
-
-      - name: nail_modifier_desc
-        data_type: varchar
-        description: ""
-
-      - name: nail_modification
-        data_type: float
-        description: ""
-
-      - name: type_of_hit
-        data_type: varchar
-        description: ""
-
-  - name: stg_hk_raw__hk_nail_types
-    description: ""
-    columns:
-      - name: nail_id
-        data_type: varchar
-        description: ""
-
-      - name: nail_desc
-        data_type: varchar
-        description: ""
-
-      - name: nail_damage
-        data_type: number
-        description: ""
-
-  - name: stg_hk_raw__hk_eshops
-    description: ""
-    columns:
-      - name: eshop_id
-        data_type: varchar
-        description: ""
-
-      - name: eshop_desc
-        data_type: varchar
-        description: ""
-
-  - name: stg_hk_raw__hk_reviews
-    description: ""
-    columns:
-      - name: recommendation_id
-        data_type: varchar
-        description: ""
-
-      - name: user_id
-        data_type: varchar
-        description: ""
-
-      - name: review_text
-        data_type: varchar
-        description: ""
-
-      - name: language
-        data_type: varchar
-        description: ""
-
-      - name: created_at_utc
-        data_type: timestamp_ntz
-        description: ""
-
-      - name: modified_at_utc
-        data_type: timestamp_ntz
-        description: ""
-
-      - name: is_voted_up
-        data_type: boolean
-        description: ""
-
-      - name: votes_up_count
-        data_type: number
-        description: ""
-
-      - name: votes_funny_count
-        data_type: number
-        description: ""
-
-      - name: weighted_vote_score
-        data_type: varchar
-        description: ""
-
-      - name: written_during_early_access
-        data_type: boolean
-        description: ""
-
-      - name: playtime_at_review_minutes
-        data_type: number
-        description: ""
-
-      - name: eshop_id
-        data_type: varchar
-        description: ""
-
-  - name: stg_hk_raw__hk_users
-    description: ""
-    columns:
-      - name: user_id
-        data_type: varchar
-        description: ""
-
-      - name: playtime_forever_minutes
-        data_type: number
-        description: ""
-
-      - name: num_games_owned
-        data_type: number
-        description: ""
-
-      - name: num_reviews
-        data_type: number
-        description: ""
-
-      - name: last_played
-        data_type: timestamp_ntz
-        description: ""
-
-      - name: eshop_id
-        data_type: varchar
-        description: ""
-
-  - name: stg_hk_raw__hk_fight_events
-    description: ""
-    columns:
-      - name: event_id
-        data_type: varchar
-        description: ""
-
-      - name: user_id
-        data_type: varchar
-        description: ""
-
-      - name: event_timestamp_utc
-        data_type: timestamp_ntz
-        description: ""
-
-      - name: gameplay_id
-        data_type: varchar
-        description: ""
-
-      - name: session_id
-        data_type: varchar
-        description: ""
-
-      - name: gameplay_type
-        data_type: varchar
-        description: ""
-
-      - name: event_type
-        data_type: varchar
-        description: ""
-
-      - name: enemy_id
-        data_type: varchar
-        description: ""
-
-      - name: hit_type
-        data_type: varchar
-        description: ""
-
-      - name: direction
-        data_type: varchar
-        description: ""
-
-      - name: damage
-        data_type: number
-        description: ""
-
-      - name: soul_change
-        data_type: number
-        description: ""
-
-      - name: soul_total
-        data_type: number
-        description: ""
-
-      - name: fight_phase
-        data_type: varchar
-        description: ""
-
-  - name: stg_hk_raw__hk_item_locations
-    description: ""
-    columns:
-      - name: item_id
-        data_type: varchar
-        description: ""
-
-      - name: item_type
-        data_type: varchar
-        description: ""
-
-      - name: location_x
-        data_type: number
-        description: ""
-
-      - name: location_y
-        data_type: number
-        description: ""
-
-  - name: stg_hk_raw__hk_charms_builded
-    description: ""
-    columns:
-      - name: charm_id
-      - name: charm_name
-      - name: charm_type
-      - name: damage_description
-      - name: notches_required
-      - name: long_description
+
+- name: stg_hk_raw__hk_areas
+  description: "vies with the areas of hollownest"
+  columns:
+
+  - name: area_id
+    data_type: varchar
+    description: "id of the area"
+
+  - name: area_name
+    data_type: varchar
+    description: "name of the area"
+
+  - name: x_start
+    data_type: number
+    description: "pixel in the x axis where the area start"
+
+  - name: x_end
+    data_type: number
+    description: "pixel in the x axis where the area end"
+
+  - name: y_start
+    data_type: number
+    description: "pixel in the y axis where the area start"
+
+  - name: y_end
+    data_type: number
+    description: "pixel in the y axis where the area end"
+
+- name: stg_hk_raw__hk_all_enemies
+  description: "view with all the enemys, the locations of the boss and the health"
+  columns:
+
+  - name: enemie_id
+    data_type: varchar
+    description: "id of the enemy"
+
+  - name: name
+    data_type: varchar
+    description: "name of the enemy"
+
+  - name: enemy_health
+    data_type: number
+    description: "health of the enemy"
+
+  - name: x_location
+    data_type: number
+    description: "x coordinate if enemy has unique location"
+
+  - name: y_location
+    data_type: number
+    description: "y coordinate if enemy has unique location"
+
+  - name: type_enemy
+    data_type: varchar
+    description: "type of enemy: boss or normal enemy"
+
+- name: stg_hk_raw__hk_challenges
+  description: "a view with the challenges an user can achive "
+  columns:
+
+  - name: challenge_id
+    data_type: varchar
+    description: "id of the challenge. is the pk"
+
+  - name: challenge_name
+    data_type: varchar
+    description: "name of the challenge"
+
+  - name: challenge_desc
+    data_type: varchar
+    description: "long description of how the challenge is achieved"
+
+- name: stg_hk_raw__hk_events
+  description: "view with gameplay events, including health, location, nails and objectives"
+  columns:
+
+  - name: event_id
+    data_type: varchar
+    description: "unique id of the event"
+
+  - name: user_id
+    data_type: varchar
+    description: "id of the user performing the event"
+
+  - name: gameplay_id
+    data_type: varchar
+    description: "id of the gameplay session"
+
+  - name: session_id
+    data_type: varchar
+    description: "id of the game session"
+
+  - name: gameplay_type
+    data_type: varchar
+    description: "type of gameplay"
+
+  - name: event_type
+    data_type: varchar
+    description: "type of the event"
+
+  - name: nail_id
+    data_type: varchar
+    description: "id of the nail used"
+
+  - name: health
+    data_type: number
+    description: "player health at the time of the event"
+
+  - name: blue_health
+    data_type: number
+    description: "player blue health at the time of the event"
+
+  - name: soul
+    data_type: number
+    description: "amount of soul collected"
+
+  - name: objective
+    data_type: varchar
+    description: "the item that the event was applied to"
+
+  - name: location_x
+    data_type: number
+    description: "x coordinate of the player"
+
+  - name: location_y
+    data_type: number
+    description: "y coordinate of the player"
+
+  - name: event_timestamp_utc
+    data_type: timestamp_ntz
+    description: "UTC timestamp of the event"
+
+- name: stg_hk_raw__hk_hit_type
+  description: "types of hits and nail modifiers affecting damage"
+  columns:
+
+  - name: nail_modifier_id
+    data_type: varchar
+    description: "id of the nail modifier"
+
+  - name: nail_modifier_desc
+    data_type: varchar
+    description: "description of the nail modifier"
+
+  - name: nail_modification
+    data_type: float
+    description: "numeric value of the nail modifier"
+
+  - name: type_of_hit
+    data_type: varchar
+    description: "type of hit, e.g., normal, critical"
+
+- name: stg_hk_raw__hk_nail_types
+  description: "different nail types and their damage"
+  columns:
+
+  - name: nail_id
+    data_type: varchar
+    description: "id of the nail"
+
+  - name: nail_desc
+    data_type: varchar
+    description: "description of the nail"
+
+  - name: nail_damage
+    data_type: number
+    description: "damage inflicted by the nail"
+
+- name: stg_hk_raw__hk_eshops
+  description: "view of digital shops in the game"
+  columns:
+
+  - name: eshop_id
+    data_type: varchar
+    description: "id of the eshop"
+
+  - name: eshop_desc
+    data_type: varchar
+    description: "name or description of the eshop"
+
+- name: stg_hk_raw__hk_reviews
+  description: "user reviews and ratings for games"
+  columns:
+
+  - name: recommendation_id
+    data_type: varchar
+    description: "unique id of the recommendation"
+
+  - name: user_id
+    data_type: varchar
+    description: "id of the user writing the review"
+
+  - name: review_text
+    data_type: varchar
+    description: "text content of the review"
+
+  - name: language
+    data_type: varchar
+    description: "language of the review"
+
+  - name: created_at_utc
+    data_type: timestamp_ntz
+    description: "timestamp of review creation"
+
+  - name: modified_at_utc
+    data_type: timestamp_ntz
+    description: "timestamp of last modification"
+
+  - name: is_voted_up
+    data_type: boolean
+    description: "true if voted up by other users"
+
+  - name: votes_up_count
+    data_type: number
+    description: "number of upvotes"
+
+  - name: votes_funny_count
+    data_type: number
+    description: "number of funny votes"
+
+  - name: weighted_vote_score
+    data_type: varchar
+    description: "calculated weighted score"
+
+  - name: written_during_early_access
+    data_type: boolean
+    description: "true if review written in early access"
+
+  - name: playtime_at_review_minutes
+    data_type: number
+    description: "playtime in minutes at time of review"
+
+  - name: eshop_id
+    data_type: varchar
+    description: "id of the eshop where purchase occurred"
+
+- name: stg_hk_raw__hk_users
+  description: "user stats and metadata"
+  columns:
+
+  - name: user_id
+    data_type: varchar
+    description: "unique user identifier"
+
+  - name: playtime_forever_minutes
+    data_type: number
+    description: "total playtime in minutes"
+
+  - name: num_games_owned
+    data_type: number
+    description: "number of games owned"
+
+  - name: num_reviews
+    data_type: number
+    description: "number of reviews written"
+
+  - name: last_played
+    data_type: timestamp_ntz
+    description: "timestamp of last play session"
+
+  - name: eshop_id
+    data_type: varchar
+    description: "id of user's eshop account"
+
+- name: stg_hk_raw__hk_fight_events
+  description: "fight events including damage, soul changes and phases"
+  columns:
+
+  - name: event_id
+    data_type: varchar
+    description: "unique fight event id"
+
+  - name: user_id
+    data_type: varchar
+    description: "id of the user"
+
+  - name: event_timestamp_utc
+    data_type: timestamp_ntz
+    description: "timestamp of event"
+
+  - name: gameplay_id
+    data_type: varchar
+    description: "gameplay session id"
+
+  - name: session_id
+    data_type: varchar
+    description: "session id of the event"
+
+  - name: gameplay_type
+    data_type: varchar
+    description: "type of gameplay"
+
+  - name: event_type
+    data_type: varchar
+    description: "type of fight event"
+
+  - name: enemy_id
+    data_type: varchar
+    description: "id of the enemy involved"
+
+  - name: hit_type
+    data_type: varchar
+    description: "type of hit applied"
+
+  - name: direction
+    data_type: varchar
+    description: "direction of attack"
+
+  - name: damage
+    data_type: number
+    description: "damage done in event"
+
+  - name: soul_change
+    data_type: number
+    description: "change in soul resource"
+
+  - name: soul_total
+    data_type: number
+    description: "total soul after event"
+
+  - name: fight_phase
+    data_type: varchar
+    description: "phase of the fight"
+
+- name: stg_hk_raw__hk_item_locations
+  description: "location of items in the game world"
+  columns:
+
+  - name: item_id
+    data_type: varchar
+    description: "unique item id"
+
+  - name: item_type
+    data_type: varchar
+    description: "type of item"
+
+  - name: location_x
+    data_type: number
+    description: "x coordinate of item"
+
+  - name: location_y
+    data_type: number
+    description: "y coordinate of item"
+
+- name: stg_hk_raw__hk_charms_builded
+  description: "charms built by users with their effects and stats"
+  columns:
+
+  - name: charm_id
+    data_type: varchar
+    description: "unique charm id"
+
+  - name: charm_name
+    data_type: varchar
+    description: "name of the charm"
+
+  - name: charm_type
+    data_type: varchar
+    description: "type of charm"
+
+  - name: damage_description
+    data_type: varchar
+    description: "description of charm damage"
+
+  - name: notches_required
+    data_type: number
+    description: "number of notches required to equip"
+
+  - name: long_description
+    data_type: varchar
+    description: "long description of charm effect"

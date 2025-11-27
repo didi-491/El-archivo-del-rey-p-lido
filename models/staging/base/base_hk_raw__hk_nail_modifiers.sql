@@ -1,6 +1,5 @@
 {{ config(
-    materialized="view", 
-    meta={'comment': 'A view with the possible nails modifiers. The nail damage must be cross with the '}
+    materialized="view"
 ) }}
 
 WITH source AS (

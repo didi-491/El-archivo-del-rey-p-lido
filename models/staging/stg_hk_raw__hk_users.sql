@@ -1,9 +1,9 @@
 
 {{ config(
     materialized="incremental", 
+    incremental_strategy="merge", 
     unique_key="user_id", 
     on_schema_change="fail", 
-    meta={'comment': 'An incremental table that flattens the raw steam review JSON data into structured columns.'}
 ) }}
 
 WITH base AS (

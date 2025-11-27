@@ -12,6 +12,7 @@ SELECT
     , type as charm_type
     , damage::varchar as damage_description
     , notches::int as notches_required
+    
     , CASE WHEN c8 IS NULL THEN description 
       ELSE concat(description, ' ', c8)
       END as long_description

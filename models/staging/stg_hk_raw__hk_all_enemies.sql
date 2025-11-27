@@ -1,3 +1,7 @@
+{{ config(
+    materialized="view"
+) }}
+
 WITH normal_enemies AS (
     SELECT
         *,
@@ -22,7 +26,8 @@ SELECT
 FROM
     normal_enemies
 
-union SELECT
-   *
-FROM
-    boss_and_miniboss
+union 
+    SELECT
+        *
+    FROM
+        boss_and_miniboss
