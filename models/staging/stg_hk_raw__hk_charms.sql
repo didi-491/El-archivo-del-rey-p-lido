@@ -1,9 +1,7 @@
-{{
-  config(
-    materialized='view',
-    comment='A view with the differents areas of the map and their coordenates.'
-  )
-}}
+{{ config(
+    materialized="view", 
+    meta={'comment': 'A view with the differents areas of the map and their coordenates.'}
+) }}
 
 SELECT
     *

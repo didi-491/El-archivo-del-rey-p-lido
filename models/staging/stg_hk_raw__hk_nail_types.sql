@@ -1,9 +1,7 @@
-{{
-  config(
-    materialized='view',
-    comment='A view with the nail types and their damage.'
-  )
-}}
+{{ config(
+    materialized="view", 
+    meta={'comment': 'A view with the nail types and their damage.'}
+) }}
 
 WITH source AS (
     SELECT

@@ -1,8 +1,6 @@
-{{
-  config(
-    comment='A view that flattens the raw steam review JSON data into structured columns.'
-  )
-}}
+{{ config(
+    meta={'comment': 'A view that flattens the raw steam review JSON data into structured columns.'}
+) }}
 
 WITH raw_reviews_source AS (
     SELECT

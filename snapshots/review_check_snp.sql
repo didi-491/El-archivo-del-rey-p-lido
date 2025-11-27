@@ -1,11 +1,11 @@
-{% snapshot review_timestamp_snp %}
+{% snapshot review_check_snp %}
 
 {{
     config(
         target_schema='snapshots',
         unique_key='recommendation_id',
         strategy='check',
-        check_cols=['modified_at_utc',]
+        check_cols=['modified_at_utc', 'review_text']
     )
 }}
 

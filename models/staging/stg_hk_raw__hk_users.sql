@@ -1,12 +1,10 @@
 
-{{
-  config(
-    materialized='incremental',
-    unique_key = 'user_id',
-    on_schema_change='fail',
-    comment='An incremental table that flattens the raw steam review JSON data into structured columns.'
-  )
-}}
+{{ config(
+    materialized="incremental", 
+    unique_key="user_id", 
+    on_schema_change="fail", 
+    meta={'comment': 'An incremental table that flattens the raw steam review JSON data into structured columns.'}
+) }}
 
 WITH base AS (
     SELECT

@@ -1,10 +1,7 @@
-{{
-  config(
-    materialized='view',
-    comment='A view with the vessel fragments location.',
-    name='hk_vessels_fragments'
-  )
-}}
+{{ config(
+    materialized="view", 
+    meta={'comment': 'A view with the vessel fragments location.', 'name': 'hk_vessels_fragments'}
+) }}
 
 WITH source AS (
     SELECT

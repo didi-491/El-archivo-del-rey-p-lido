@@ -1,9 +1,8 @@
-{{
-  config(
-    materialized='view',
-    comment='A view with the differents areas of the map and their coordenates.'
-  )
-}}
+{{ config(
+    materialized="incremental", 
+    unique_key="event_id", 
+   
+) }}
 
 WITH source AS (
     SELECT *

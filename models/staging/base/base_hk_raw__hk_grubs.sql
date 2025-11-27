@@ -1,9 +1,7 @@
-{{
-  config(
-    materialized='view',
-    comment='A view with the grubs location.'
-  )
-}}
+{{ config(
+    materialized="view", 
+    meta={'comment': 'A view with the grubs location.'}
+) }}
 
 WITH source AS (
     SELECT

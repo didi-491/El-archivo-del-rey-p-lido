@@ -9,9 +9,7 @@ analysis-paths: ["analyses"]
 test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]   
-
-target-path: "target"  
+snapshot-paths: ["snapshots"]
 clean-targets:
   - "target"
   - "dbt_packages"
@@ -26,7 +24,6 @@ models:
       +materialized: view
       +database: "hk_dev_SILVER"
       +schema: 'hk_dcl_dbt'
-      
     marts:
       +materialized: table
       +database: "hk_dev_GOLD"
@@ -34,8 +31,10 @@ models:
 
 seeds:
   +schema: seed_data
-  +database: "hk_dev__BRONZE"        
+  +database: "hk_dev__BRONZE"
 snapshots:
   +transient: false
   +target_database: "hk_dev_SILVER"
   +target_schema: snapshots
+flags:
+  require_generic_test_arguments_property: true

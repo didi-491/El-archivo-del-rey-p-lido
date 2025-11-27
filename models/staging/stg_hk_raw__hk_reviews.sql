@@ -1,11 +1,10 @@
-{{
-  config(
-    materialized='incremental',
-    unique_key = 'recommendation_id',
-    on_schema_change='fail',
-    comment='A view with the review information from the steam json.'
-  )
-}}
+{{ config(
+    materialized="incremental", 
+    incremental_strategy="merge", 
+    unique_key="recommendation_id", 
+    on_schema_change="fail", 
+    meta={'comment': 'A view with the review information from the steam json.'}
+) }}
 
 WITH base AS (
     SELECT

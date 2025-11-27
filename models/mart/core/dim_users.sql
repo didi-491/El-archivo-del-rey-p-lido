@@ -7,4 +7,4 @@ select
     num_reviews,
     last_played,
     eshop_id
-from {{ ref('users_timestamp_snp') }}
+from {{ ref('stg_hk_raw__hk_users') }}

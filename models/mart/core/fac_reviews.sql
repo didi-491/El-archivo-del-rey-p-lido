@@ -1,6 +1,6 @@
-{{ config(materialized='incremental', unique_key='event_id') }}
+{{ config(materialized='incremental', unique_key='recommendation_id') }}
 
 select
     *
 
-from {{ ref('review_timestamp_snp') }} 
+from {{ ref('review_check_snp') }} 

@@ -1,9 +1,7 @@
-{{
-  config(
-    materialized='view',
-    comment='A view with the fragments of mask localitation.'
-  )
-}}
+{{ config(
+    materialized="view", 
+    meta={'comment': 'A view with the fragments of mask localitation.'}
+) }}
 
 WITH source AS (
     SELECT
