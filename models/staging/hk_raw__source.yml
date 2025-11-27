@@ -1,0 +1,347 @@
+version: 2
+
+sources:
+  - name: hk_raw
+    description: "schema with the raw data"
+    database: "{{ env_var('DBT_ENVIRONMENT') }}_BRONZE"
+    tables:
+      - name: hk_areas
+        description: "table with the differents areas of Hollownest"  
+        columns:
+          - name: area_id
+            data_type: varchar
+            description: "primary key for each area"
+            tests:
+              - unique
+              - not_null
+          - name: area_name
+            data_type: varchar
+            description: "name of the area"
+            tests:
+              - unique
+              - not_null
+          - name: x_start
+            data_type: varchar
+            description: "number of the pixel where the area start in the x axis"
+
+          - name: y_start
+            data_type: varchar
+            description: "number of the pixel where the area start in the y axis"
+
+          - name: x_end
+            data_type: varchar
+            description: "number of the pixel where the area end in the x axis"
+
+          - name: y_end
+            data_type: varchar
+            description: "number of the pixel where the area end in the y axis"
+
+          - name: subregions
+            data_type: varchar
+            description: "number of rooms found in each region"
+
+      - name: hk_bench
+        description: "table with the differents bench found in Hollownest"
+        columns:
+          - name: type
+            data_type: varchar
+            description: "name of the object found for each coordinate. There are only bench"
+          - name: x
+            data_type: number
+            description: "number of the pixel where the object is found in the x axis"
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "number of the pixel where the object is found in the y axis"
+            tests:
+              - not_null
+
+      - name: hk_bosses_and_minibosses
+        description: "table with the name of the boss and miniboss found in hollownest"
+        columns:
+          - name: name
+            data_type: varchar
+            description: "name of the boss or miniboss"
+          - name: health
+            data_type: varchar
+            description: "health of the boss or miniboss"
+          - name: location_x
+          - name: location_y
+
+      - name: hk_challenges
+        description: "table with the challenges that a player can achieve in the game"
+        columns:
+          - name: challenge_id
+            data_type: varchar
+            description: "primary key that identify each challenge"
+            tests:
+              - unique
+              - not_null
+          - name: challenge_name
+            data_type: varchar
+            description: "name of the challenge"
+            tests:
+              - not_null
+          - name: challenge_desc
+            data_type: varchar
+            description: "information about how to achieve each challenge"
+
+      - name: hk_charms
+        description: "table with the charms that can be found in hollownest"
+        columns:
+          - name: charm_name
+            data_type: varchar
+            description: "name of the charm"
+          - name: x_location
+            data_type: varchar
+            description: "location on the x axis"
+          - name: y_location
+            data_type: varchar
+            description: "location on the y axis"
+          - name: type
+            data_type: varchar
+            description: "type of ability of the charm"
+          - name: damage
+            data_type: varchar
+            description: "damage of the charm"
+          - name: notches
+            data_type: varchar
+            description: "damage of the charm"
+          - name: description
+            data_type: varchar
+            description: "long descripcion of the charm"
+          - name: c8
+            data_type: varchar
+
+      - name: hk_enemies
+        description: "table of normal enemies that can be found in hollownest"
+        columns:
+          - name: name
+            data_type: varchar
+            description: "name of the enemie"
+          - name: health
+            data_type: varchar
+            description: "health of each enemie"
+          - name: c3
+            data_type: varchar
+            description: "null colum"
+          - name: c4
+            data_type: varchar
+            description: "null colum"
+          - name: c5
+            data_type: varchar
+            description: "null colum"
+          - name: c6
+            data_type: varchar
+            description: "null colum"
+
+      - name: hk_events
+        description: "Table with events that happened in different gameplays"
+        columns:
+          - name: event_id
+            data_type: varchar
+            description: "primary key for each event"
+            tests:
+              - unique
+              - not_null
+          - name: user_id
+            data_type: varchar
+            description: "id of the user playing the game"
+            tests:
+              - not_null
+          - name: gameplay_id
+            data_type: varchar
+            description: "ID of the gameplay. Each user can have multiple gameplays, but each gameplay is played by one user."
+            tests:
+              - not_null
+          - name: session_id
+            data_type: varchar
+            description: "ID of the session each event is happening. A session start when you open the game and finish when you close it. You can play multiple gameplays in one session."
+            tests:
+              - not_null
+          - name: gameplay_type
+            data_type: varchar
+            description: "There are diferents type of gameplays"
+            tests:
+              - not_null
+          - name: event_type
+            data_type: varchar
+            description: "The type of the event. Ex: hit, change room, defeat an enemie..."
+          - name: nail_id
+            data_type: varchar
+          - name: health
+            data_type: number 
+          - name: blue_mask
+            data_type: number 
+          - name: soul
+            data_type: number 
+          - name: objective
+            data_type: varachar
+          - name: location_x
+            data_type: number
+            description: "The pixel in the x axis where the action has occurred"
+            tests:
+              - not_null
+          - name: location_y
+            data_type: number
+            description: "The pixel in the y axis where the action has occurred"
+            tests:
+              - not_null
+          - name: event_timestamp
+            data_type: timestamp_ntz
+            description: "When the event has occured"
+            tests:
+              - not_null
+          - name: filename
+            data_type: varchar
+            description: "Metadata of where the event is located in AWS"
+          - name: load_timestamp
+            data_type: timestamp_ntz
+            description: "Metadata of the time when the event was load to snowflake"
+
+      - name: hk_grubs
+        description: "table with the location of the differents grubs found in hollowenst"
+        columns:
+          - name: type
+            data_type: varchar
+            description: "Name of the object found for each coordinate. There are only grubs"
+            tests:
+              - not_null
+          - name: x
+            data_type: number
+            description: "Number of the pixel where the object is found in the x axis"
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "Number of the pixel where the object is found in the y axis"
+            tests:
+              - not_null
+              
+      - name: hk_mask
+        description: "Table with the location of the masks found in hollownest"
+        columns:
+          - name: id
+            data_type: number
+            description: "Primary key of the mask"
+          - name: type
+            data_type: varchar
+            description: "Name of the type of object. Is always mask"
+          - name: x
+            data_type: number
+            description: "Number of the pixel where the mask is found in the x axis"
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "Number of the pixel where the mask is found in the y axis"
+            tests:
+              - not_null
+
+      - name: hk_nail
+        description: "Table with the different damage of the nail based on the attack and the level of the nail"
+        columns:
+          - name: source
+            data_type: varchar
+            description: "Name of the source of damage, with the description of the nail or the attack."
+          - name: damage
+            data_type: varchar
+            description: "Number of the average of damage that can be done"
+
+      - name: hk_spells
+        description: "Table with the spells and abilitis avaible for the hollows"
+        columns:
+          - name: spell
+            data_type: varchar
+            description: "Name of the spell"
+          - name: damage
+            data_type: varchar
+            description: "Number of the average of damage that can be done"
+
+      - name: hk_steam_data
+        description: "Reviews about hollownest on steam"
+        columns:
+          - name: review_data
+            data_type: variant
+            description: "Information from a json. Need to be structured"
+
+      - name: hk_vessels
+        description: "Table with the location of the vessels found in hollownest"
+        columns:
+          - name: id
+            data_type: number
+            description: "Primary key of the mask"
+          - name: type
+            data_type: varchar
+            description: "Name of the type of object. Is always vessel"
+          - name: x
+            data_type: number
+            description: "Number of the pixel where the vessel is found in the x axis"
+            tests:
+              - not_null
+          - name: y
+            data_type: number
+            description: "Number of the pixel where the vessel is found in the y axis"
+            tests:
+              - not_null
+
+      - name: hk_fights
+        description: "Staging model for combat events in Hollow Knight, containing detailed information about player interactions, enemies, damage, and combat phases."
+        columns:
+          - name: event_id
+            description: "Unique identifier for the combat event."
+            tests:
+              - not_null
+
+          - name: timestamp
+            description: "Original timestamp of the event, stored as text."
+
+          - name: user_id
+            description: "Identifier of the user/player associated with the event."
+
+          - name: gameplay_id
+            description: "Identifier of the gameplay session in which the event occurred."
+
+          - name: session_id
+            description: "Identifier of the specific player session."
+
+          - name: gameplay_type
+            description: "Type of gameplay (e.g., normal exploration, boss fight)."
+
+          - name: event_type
+            description: "Type of combat event recorded."
+            tests:
+              - not_null
+
+          - name: enemy
+            description: "Name of the enemy involved in the event."
+            tests:
+              - not_null
+
+          - name: hit_type
+            description: "Type of hit performed or received during the event."
+
+          - name: direction
+            description: "Direction from which the hit occurred."
+
+          - name: damage
+            description: "Amount of damage dealt or received, stored as text."
+
+          - name: soul_change
+            description: "Change in Soul value resulting from the event."
+
+          - name: soul_total
+            description: "Total amount of Soul after the event."
+
+          - name: heal_amount
+            description: "Amount of healing performed during the event."
+
+          - name: fight_phase
+            description: "Phase of the combat sequence."
+
+          - name: filename
+            description: "Name of the source file where the event was recorded."
+
+          - name: load_timestamp
+            description: "Snowflake load timestamp indicating when the record was ingested."
