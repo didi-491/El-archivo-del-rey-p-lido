@@ -5,7 +5,7 @@
 
 SELECT
     md5(replace(replace(trim(charm_name), ' ', '_'), '-', '_')) as charm_id
-    , md5(concat(replace(replace(trim(charm_name), ' ', '_'), '-', '_'), '_', x_location , '_', y_location)) charm_id_location
+    , concat(replace(replace(trim(charm_name), ' ', '_'), '-', '_'), '_', x_location , '_', y_location) charm_id_location
     , charm_name
     , x_location::int as location_x
     , y_location::int as location_y
