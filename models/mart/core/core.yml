@@ -1,0 +1,71 @@
+version: 2
+
+models:
+
+- name: dim_areas
+  description: "vies with the areas of hollownest"
+  columns:
+  
+  - name: area_id
+    data_type: varchar
+    description: "id of the area"
+
+  - name: area_name
+    data_type: varchar
+    description: "name of the area"
+
+  - name: x_start
+    data_type: number
+    description: "pixel in the x axis where the area start"
+
+  - name: x_end
+    data_type: number
+    description: "pixel in the x axis where the area end"
+
+  - name: y_start
+    data_type: number
+    description: "pixel in the y axis where the area start"
+
+  - name: y_end
+    data_type: number
+    description: "pixel in the y axis where the area end"
+
+- name: dim_challenge
+
+- name: dim_date_time
+  description: "vies with the areas of hollownest"
+  columns:
+  
+      - name: date_pk
+        description: "Primary key for the timestamp (YYYYMMDDHHMM)"
+        tests:
+          - unique
+          - not_null
+      - name: year
+      - name: month
+      - name: month_name
+      - name: day
+      - name: quarter
+      - name: day_of_week_iso
+      - name: day_name
+      - name: hour
+      - name: minute
+      - name: second_of_minute 
+
+- name: dim_enemy
+
+- name: dim_eshop
+
+- name: dim_hit_tyype
+
+- name: dim_itme_locations
+
+- name: dim_nail_level
+
+- name: dim_type_charms
+
+- name: dim_users
+
+- name: fact_fights
+
+- name: fact_find_item

@@ -27,13 +27,13 @@ SELECT
       then md5(replace(replace(trim(objective), ' ', '_'), '-', '_'))
       
     when event_type = 'release_grub' 
-      then md5(concat('grub_', location_x , '_', location_y))
+      then concat('grub_', location_x , '_', location_y)
       
     when event_type = 'rest_bench' 
-      then md5(concat('bench_', location_x , '_', location_y))
+      then concat('bench_', location_x , '_', location_y)
       
     when event_type = 'obtain_item' 
-      then md5(concat(replace(replace(trim(objective), ' ', '_'), '-', '_'), '_', location_x , '_', location_y)) 
+      then concat(replace(replace(trim(objective), ' ', '_'), '-', '_'), '_', location_x , '_', location_y)
       
     when event_type = 'buy_item' 
 
